@@ -1,5 +1,6 @@
 package model;
 
+
 public class Pillar {
 
     private String name;
@@ -15,14 +16,26 @@ public class Pillar {
      * pre: El arreglo projects debe estar inicializado
      * pos: El arreglo projects queda modificado con el nuevo Project
      * agregado
-     * 
-     * @param newProject Project El Project que se va a añadir
-     * @return boolean true si se logra añadir el Project, false en caso
-     *         contrario
      */
-    public boolean registerProject(Project newProject) {
 
-        return false;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public boolean addProject(Project project) {
+        
+        for (int i = 0; i < projects.length; i++) {
+            if (projects[i] == null) {
+                projects[i] = project;  
+                System.out.println("Proyecto añadido: " + project.getName());  
+                return true;
+            }
+        }
+        return false;  // No hay espacio para más proyectos
     }
 
     /**
@@ -31,12 +44,16 @@ public class Pillar {
      * pre: El arreglo projects debe estar inicializado
      * 
      */
-    public String getProjectList() {
-
+    
+     public String getProjectList() {
         String list = "";
+        for (int i = 0; i < projects.length; i++) {
+            if (projects[i] != null) {
+                list += "ID: " + projects[i].getId() + " - " + projects[i].getName() + "\n";
+            }
+        }
 
         return list;
     }
-
 
 }
